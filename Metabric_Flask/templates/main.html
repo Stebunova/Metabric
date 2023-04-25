@@ -1,0 +1,112 @@
+<!doctype html>
+<style>
+form {
+    margin: auto; 
+    width: 25%;
+}
+
+.result {
+    margin: auto;
+    width: 25%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <title> Прогнозирование продолжительности жизни</title>
+</head>
+
+<form action="{{url_for('main')}}" method="POST">
+    <fieldset>
+        <legend>Введите значение</legend>
+        Возраст пациента
+        <input name = "num__age_at_diagnosis" type="number"
+        <legend>Введите значение</legend>
+        Химиотерапия
+        <input name = "num__chemotherapy" type="number"
+        <legend>Введите значение</legend>
+        Гистология
+        <input name = "num__neoplasm_histologic_grade" type="number"
+        <legend>Введите значение</legend>
+        Гормональная терапия
+        <input name = "num__hormone_therapy" type="number"
+        <legend>Введите значение</legend>
+        Пораженные лимфоузлы
+        <input name = "num__lymph_nodes_examined_positive" type="number"
+        <legend>Введите значение</legend>
+        Количество мутаций
+        <input name = "num__mutation_count" type="number"
+        <legend>Введите значение</legend>
+        Ноттингемский индекс
+        <input name = "num__nottingham_prognostic_index" type="number"
+        <legend>Введите значение</legend>
+        Лучевая терапия
+        <input name = "num__radio_therapy" type="number"
+        <legend>Введите значение</legend>
+        Размер опухоли
+        <input name = "num__tumor_size" type="number"
+        <legend>Введите значение</legend>
+        Стадия
+        <input name = "num__tumor_stage" type="number"
+
+        <legend>Введите значение</legend>
+        Операция
+        <input name = "cat__type_of_breast_surgery" type="string"
+        <legend>Введите значение</legend>
+        Тип опухоли
+        <input name = "cat__cancer_type_detailed" type="string"
+        <legend>Введите значение</legend>
+        Клеточность
+        <input name = "cat__cellularity" type="string"
+        <legend>Введите значение</legend>
+        PAM-50
+        <input name = "cat__pam50_+_claudin-low_subtype" type="string"
+        <legend>Введите значение</legend>
+        ИГХ
+        <input name = "cat__er_status_measured_by_ihc" type="string"
+        <legend>Введите значение</legend>
+        ЭР статус
+        <input name = "cat__er_status" type="string"
+        <legend>Введите значение</legend>
+        SNP6
+        <input name = "cat__her2_status_measured_by_snp6'" type="string"
+        <legend>Введите значение</legend>
+        Her2
+        <input name = "cat__her2_status" type="string"
+        <legend>Введите значение</legend>
+        Подтип
+        <input name = "cat__tumor_other_histologic_subtype" type="string"
+        <legend>Введите значение</legend>
+        Менопауза
+        <input name = "cat__inferred_menopausal_state" type="string"
+        <legend>Введите значение</legend>
+        Кластер
+        <input name = "cat__integrative_cluster'" type="string"
+        <legend>Введите значение</legend>
+        Локализация
+        <input name = "cat__primary_tumor_laterality" type="string"
+        <legend>Введите значение</legend>
+        ПР статус
+        <input name = "cat__pr_status" type="string"
+        <legend>Введите значение</legend>
+        Классификация
+        <input name = "cat__3-gene_classifier_subtype'" type="string"
+        <legend>Введите значение</legend>
+      
+        
+        required>
+        <br>
+        <br>
+
+    </fieldset>
+
+</form>
+
+<div class="result" align="center">
+    % if result %<br>
+    <p style="font-size:50px">
+    Ожидаемая продолжительность жизни
+    </p>
+    <p style="font-size:50px"> {{result}}</p>
+    {%endif %}
+</div>
