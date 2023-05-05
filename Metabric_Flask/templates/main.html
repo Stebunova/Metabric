@@ -1,112 +1,97 @@
 <!doctype html>
+<html>
 <style>
+
+p {font-size: 12px; font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: left;}
+h1 {font-size: 18px; font-weight: bold; font-family: Verdana, Geneva, Tahoma, sans-serif; color: red; text-align: center;}
+h2 {font-size: 14px; font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center;}
+
 form {
     margin: auto; 
-    width: 25%;
+    width: 30%;
 }
 
 .result {
     margin: auto;
-    width: 25%;
-    border: 1px solid #ccc;
+    width: 50%;
 }
 </style>
 
 <head>
-    <title> Прогнозирование продолжительности жизни</title>
+    <title>ВКР Стебунова Р.В.</title>
 </head>
+<body>
 
 <form action="{{url_for('main')}}" method="POST">
+    
+<h1>Выпускная квалификационная работа по курсу «Data Science»</h1> 
+<h2>Прогнозирование времени до события<h2> 
     <fieldset>
-        <legend>Введите значение</legend>
-        Возраст пациента
-        <input name = "num__age_at_diagnosis" type="number"
-        <legend>Введите значение</legend>
-        Химиотерапия
-        <input name = "num__chemotherapy" type="number"
-        <legend>Введите значение</legend>
-        Гистология
-        <input name = "num__neoplasm_histologic_grade" type="number"
-        <legend>Введите значение</legend>
-        Гормональная терапия
-        <input name = "num__hormone_therapy" type="number"
-        <legend>Введите значение</legend>
-        Пораженные лимфоузлы
-        <input name = "num__lymph_nodes_examined_positive" type="number"
-        <legend>Введите значение</legend>
-        Количество мутаций
-        <input name = "num__mutation_count" type="number"
-        <legend>Введите значение</legend>
-        Ноттингемский индекс
-        <input name = "num__nottingham_prognostic_index" type="number"
-        <legend>Введите значение</legend>
-        Лучевая терапия
-        <input name = "num__radio_therapy" type="number"
-        <legend>Введите значение</legend>
-        Размер опухоли
-        <input name = "num__tumor_size" type="number"
-        <legend>Введите значение</legend>
-        Стадия
-        <input name = "num__tumor_stage" type="number"
-
-        <legend>Введите значение</legend>
-        Операция
-        <input name = "cat__type_of_breast_surgery" type="string"
-        <legend>Введите значение</legend>
-        Тип опухоли
-        <input name = "cat__cancer_type_detailed" type="string"
-        <legend>Введите значение</legend>
-        Клеточность
-        <input name = "cat__cellularity" type="string"
-        <legend>Введите значение</legend>
-        PAM-50
-        <input name = "cat__pam50_+_claudin-low_subtype" type="string"
-        <legend>Введите значение</legend>
-        ИГХ
-        <input name = "cat__er_status_measured_by_ihc" type="string"
-        <legend>Введите значение</legend>
-        ЭР статус
-        <input name = "cat__er_status" type="string"
-        <legend>Введите значение</legend>
-        SNP6
-        <input name = "cat__her2_status_measured_by_snp6'" type="string"
-        <legend>Введите значение</legend>
-        Her2
-        <input name = "cat__her2_status" type="string"
-        <legend>Введите значение</legend>
-        Подтип
-        <input name = "cat__tumor_other_histologic_subtype" type="string"
-        <legend>Введите значение</legend>
-        Менопауза
-        <input name = "cat__inferred_menopausal_state" type="string"
-        <legend>Введите значение</legend>
-        Кластер
-        <input name = "cat__integrative_cluster'" type="string"
-        <legend>Введите значение</legend>
-        Локализация
-        <input name = "cat__primary_tumor_laterality" type="string"
-        <legend>Введите значение</legend>
-        ПР статус
-        <input name = "cat__pr_status" type="string"
-        <legend>Введите значение</legend>
-        Классификация
-        <input name = "cat__3-gene_classifier_subtype'" type="string"
-        <legend>Введите значение</legend>
-      
-        
-        required>
+        <legend>Введите значения</legend>
+        <p>Возраст
+        <input name = "age_at_diagnosis" value="55" type="text" required>
+        <p>Химиотерапия
+        <input name = "chemotherapy" value="1" type="text" required>
+        <p>Гистология
+        <input name = "neoplasm_histologic_grade" value="3" type="text" required>
+        <p>Гормональная терапия
+        <input name = "hormone_therapy" value="0" type="text" required>
+        <p>Пораженные лимфоузлы
+        <input name = "lymph_nodes_examined_positive" value="4" type="text" required>
+        <p>Количество мутаций
+        <input name = "mutation_count" value="2" type="text" required>
+        <p>Ноттингемский индекс
+        <input name = "nottingham_prognostic_index" value="6.08" type="text" required>
+        <p>Лучевая терапия
+        <input name = "radio_therapy" value="1" type="text" required>
+        <p>Размер опухоли
+        <input name = "tumor_size" value="18" type="text" required>
+        </p>
+        <p>Стадия
+        <input name = "tumor_stage" value="2" type="text" required></p>
+        <p>Операция
+        <input name = "type_of_breast_surgery" value="MASTECTOMY" type="text" required>
+        <p>Тип опухоли
+        <input name = "cancer_type_detailed" value="Breast Invasive Ductal Carcinoma" type="text" required>
+        <p>Плотность
+        <input name = "cellularity" value="Moderate" type="text" required>
+        <p>PAM-50
+        <input name = "pam50_+_claudin-low_subtype" value="LumA" type="text" required>
+        <p>ИГХ
+        <input name = "er_status_measured_by_ihc" value="Positive" type="text" required>
+        <p>ЭР статус
+        <input name = "er_status" value="Positive" type="text" required>
+        <p>SNP6
+        <input name = "her2_status_measured_by_snp6" value="NEUTRAL" type="text" required>
+        <p>Her2
+        <input name = "her2_status" value="Negative" type="text" required>
+        <p>Подтип
+        <input name = "tumor_other_histologic_subtype" value="Ductal/NST" type="text" required>
+        <p>Менопауза
+        <input name = "inferred_menopausal_state" value="Post" type="text" required>
+        <p>Кластер
+        <input name = "cat__integrative_cluster" value="10" type="text" required>
+        <p>Локализация
+        <input name = "primary_tumor_laterality" value="Right" type="text" required>
+        <p>ПР статус
+        <input name = "pr_status" value="Positive" type="text" required>
+        <p>Классификация
+        <input name = "3-gene_classifier_subtype" value="ER+/HER2- High Prolif" type="text" required>
+     
         <br>
         <br>
-
+        <input type="submit">
     </fieldset>
 
 </form>
 
-<div class="result" align="center">
-    % if result %<br>
-    <p style="font-size:50px">
+<div class="result">
+    {% if result %}
+    <p style="font-size:14px">
     Ожидаемая продолжительность жизни
     </p>
-    <p style="font-size:50px"> {{result}}</p>
-    {%endif %}
+    <p style="font-size:14px"> {{result}}</p>
+    {% endif %}
 </div>
+</body>
+</html>
