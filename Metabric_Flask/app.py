@@ -2,6 +2,12 @@ import flask
 from flask import render_template
 import pickle
 import sklearn
+import numpy as np
+from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.compose import ColumnTransformer
 from sksurv.ensemble import RandomSurvivalForest
 # print('Hello Metabric_flask')
 
@@ -14,9 +20,9 @@ def main():
     if flask.request.method =='GET':
         return render_template('main.html')
     
-    if flask.request.method == 'POST':
-        with open('rsf_pkl.pkl', 'rb') as f:
-            Metabric_rsf_model = pickle.load(f)
+    if flask.request.method =='POST':
+        with open('model_pkl.pkl', 'rb') as f:
+            Metabric_model = pickle.load(f)
 
     age = float(flask.request.form['num__age_at_diagnosis'])
     ct = float(flask.request.form['num__chemotherapy'])
@@ -28,26 +34,25 @@ def main():
     rad = float(flask.request.form['num__radio_therapy'])
     siz = float(flask.request.form['num__tumor_size'])
     stag = float(flask.request.form['num__tumor_stage'])
-    surg = object(flask.request.form['cat__type_of_breast_surgery'])
-    typ = object(flask.request.form['cat__cancer_type_detailed'])
-    cell = object(flask.request.form['cat__cellularity'])
-    pam = object(flask.request.form['cat__pam50_+_claudin-low_subtype'])
-    ihc = object(flask.request.form['cat__er_status_measured_by_ihc'])
-    er = object(flask.request.form['cat__er_status'])
-    snp = object(flask.request.form['cat__her2_status_measured_by_snp6'])
-    her = object(flask.request.form['cat__her2_status'])
-    oth = object(flask.request.form['cat__tumor_other_histologic_subtype'])
-    men = object(flask.request.form['cat__inferred_menopausal_state'])
-    clus = object(flask.request.form['cat__integrative_cluster'])
-    lat = object(flask.request.form['cat__primary_tumor_laterality'])
-    pr = object(flask.request.form['cat__pr_status'])
-    clas = object(flask.request.form['cat__3-gene_classifier_subtype'])
+    surg = float(flask.request.form['cat__type_of_breast_surgery'])
+    typ = float(flask.request.form['cat__cancer_type_detailed'])
+    cell = float(flask.request.form['cat__cellularity'])
+    pam = float(flask.request.form['cat__pam50_+_claudin-low_subtype'])
+    ihc = float(flask.request.form['cat__er_status_measured_by_ihc'])
+    er = float(flask.request.form['cat__er_status'])
+    snp = float(flask.request.form['cat__her2_status_measured_by_snp6'])
+    her = float(flask.request.form['cat__her2_status'])
+    oth = float(flask.request.form['cat__tumor_other_histologic_subtype'])
+    men = float(flask.request.form['cat__inferred_menopausal_state'])
+    clus = float(flask.request.form['cat__integrative_cluster'])
+    lat = float(flask.request.form['cat__primary_tumor_laterality'])
+    pr = float(flask.request.form['cat__pr_status'])
+    clas = float(flask.request.form['cat__3-gene_classifier_subtype'])
 
-    y_pred = Metabric_rsf_model.predict([[age], [ct], [hist], [ht], [ln], [mut],
-                                         [nott], [rad], [siz], [stag], [surg],
-                                         [typ], [cell], [pam], [ihc], [er], [snp],
-                                         [her], [oth], [men], [clus], [lat], [pr], [clas]])
-
+    X = np.array([age, ct, hist, ht, ln, mut, nott, rad, siz, stag, surg, 
+                typ, cell, pam, ihc, er, snp, 
+                 her, oth, men, clus, lat, pr, clas]).reshape(1,-1)
+    y_pred = Metabric_model.predict(X)
     return render_template('main.html', result = y_pred)
 
 if __name__ == '__main__':
