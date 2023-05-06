@@ -21,7 +21,7 @@ def main():
         return render_template('main.html')
     
     if flask.request.method =='POST':
-        with open('model_pkl.pkl', 'rb') as f:
+        with open('rsf_pkl.pkl', 'rb') as f:
             Metabric_model = pickle.load(f)
 
     age = float(flask.request.form['num__age_at_diagnosis'])
